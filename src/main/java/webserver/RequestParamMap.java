@@ -46,18 +46,6 @@ public class RequestParamMap {
         return requestParamMap;
     }
 
-    private static boolean existQueryString(String requestUrl) {
-        return requestUrl.contains(QUERY_STRING_START_CHARACTER);
-    }
-
-    private static String containQueryStringStartCharacter(String requestUrl) {
-        if (requestUrl.contains(QUERY_STRING_START_CHARACTER)) {
-            return requestUrl.split(REQUEST_URL_PATH_DELIMITER)[QUERY_STRING_INDEX];
-        }
-
-        return requestUrl;
-    }
-
     public String get(String key) {
         return this.requestParamMap.get(key);
     }
