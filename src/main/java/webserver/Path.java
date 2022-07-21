@@ -6,11 +6,7 @@ public class Path {
     private static final String QUERY_STRING_START_CHARACTER = "?";
     private static final String REQUEST_URL_PATH_DELIMITER = "\\?";
 
-    private String path;
-
-    protected Path() {
-
-    }
+    private final String path;
 
     private Path(final String path) {
         this.path = path;
