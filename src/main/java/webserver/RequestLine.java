@@ -7,14 +7,10 @@ public class RequestLine {
     private static final int REQUEST_URL_INDEX = 1;
     private static final int PROTOCOL_VERSION_INDEX = 2;
 
-    private HttpMethod httpMethod;
-    private Path path;
-    private ProtocolVersion protocolVersion;
-    private RequestParamMap requestParamMap;
-
-    protected RequestLine() {
-
-    }
+    private final HttpMethod httpMethod;
+    private final Path path;
+    private final ProtocolVersion protocolVersion;
+    private final RequestParamMap requestParamMap;
 
     private RequestLine(
             final HttpMethod httpMethod,

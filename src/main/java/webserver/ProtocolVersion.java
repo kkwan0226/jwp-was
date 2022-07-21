@@ -7,12 +7,8 @@ public class ProtocolVersion {
     private static final int PROTOCOL_INDEX = 0;
     private static final int VERSION_INDEX = 1;
 
-    private String protocol;
-    private String version;
-
-    protected ProtocolVersion() {
-
-    }
+    private final String protocol;
+    private final String version;
 
     private ProtocolVersion(final String protocol, final String version) {
         this.protocol = protocol;

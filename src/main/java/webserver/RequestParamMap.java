@@ -14,11 +14,7 @@ public class RequestParamMap {
     private static final String REQUEST_URL_PARAMETER_DELIMITER = "&";
     private static final String REQUEST_URL_KEY_VALUE_DELIMITER = "=";
 
-    private Map<String, String> requestParamMap = new HashMap<>();
-
-    protected RequestParamMap() {
-
-    }
+    private final Map<String, String> requestParamMap;
 
     private RequestParamMap(final Map<String, String> requestParamMap) {
         this.requestParamMap = requestParamMap;
@@ -41,7 +37,7 @@ public class RequestParamMap {
 
     private static Map<String, String> getRequestParamMap(String[] splitQueryString) {
         Map<String, String> requestParamMap = new HashMap<>();
-        
+
         for (String parameter : splitQueryString) {
             String[] splitParameter = parameter.split(REQUEST_URL_KEY_VALUE_DELIMITER);
             requestParamMap.put(splitParameter[PARAMETER_KEY_INDEX], splitParameter[PARAMETER_VALUE_INDEX]);
