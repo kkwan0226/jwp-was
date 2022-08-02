@@ -1,5 +1,7 @@
 package webserver;
 
+import webserver.code.HttpMethod;
+
 public class RequestLine {
 
     private static final String EMPTY_STRING = " ";
