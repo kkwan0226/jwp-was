@@ -1,5 +1,8 @@
-package webserver;
+package webserver.request;
 
+import webserver.Path;
+import webserver.Protocol;
+import webserver.RequestParam;
 import webserver.code.HttpMethod;
 
 public class StartLine {
