@@ -1,6 +1,5 @@
 package webserver.request;
 
-import webserver.Protocol;
 import webserver.RequestParam;
 import webserver.code.HttpMethod;
 
