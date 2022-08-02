@@ -15,13 +15,13 @@ public class RequestLineTest {
         RequestLine requestLine = RequestLine.from(startLine);
         HttpMethod httpMethod = requestLine.getHttpMethod();
         Path path = requestLine.getPath();
-        ProtocolVersion protocolVersion = requestLine.getProtocolVersion();
+        Protocol protocol = requestLine.getProtocolVersion();
 
         assertAll(
                 () -> assertThat(httpMethod.getMethod()).isEqualTo("GET"),
                 () -> assertThat(path.getPath()).isEqualTo("/users"),
-                () -> assertThat(protocolVersion.getProtocol()).isEqualTo("HTTP"),
-                () -> assertThat(protocolVersion.getVersion()).isEqualTo("1.1")
+                () -> assertThat(protocol.getName()).isEqualTo("HTTP"),
+                () -> assertThat(protocol.getVersion()).isEqualTo("1.1")
         );
     }
 
@@ -32,13 +32,13 @@ public class RequestLineTest {
         RequestLine requestLine = RequestLine.from(startLine);
         HttpMethod httpMethod = requestLine.getHttpMethod();
         Path path = requestLine.getPath();
-        ProtocolVersion protocolVersion = requestLine.getProtocolVersion();
+        Protocol protocol = requestLine.getProtocolVersion();
 
         assertAll(
                 () -> assertThat(httpMethod.getMethod()).isEqualTo("POST"),
                 () -> assertThat(path.getPath()).isEqualTo("/users"),
-                () -> assertThat(protocolVersion.getProtocol()).isEqualTo("HTTP"),
-                () -> assertThat(protocolVersion.getVersion()).isEqualTo("1.1")
+                () -> assertThat(protocol.getName()).isEqualTo("HTTP"),
+                () -> assertThat(protocol.getVersion()).isEqualTo("1.1")
         );
     }
 

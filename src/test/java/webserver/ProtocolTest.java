@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class ProtocolVersionTest {
+public class ProtocolTest {
 
     @Test
     void 올바른_REQUEST_PROTOCOL_VERSION_테스트() {
         String requestProtocolVersion = "HTTP/1.1";
-        ProtocolVersion protocolVersion = ProtocolVersion.from(requestProtocolVersion);
+        Protocol protocol = Protocol.from(requestProtocolVersion);
 
         assertAll(
-                () -> Assertions.assertThat(protocolVersion.getProtocol()).isEqualTo("HTTP"),
-                () -> Assertions.assertThat(protocolVersion.getVersion()).isEqualTo("1.1")
+                () -> Assertions.assertThat(protocol.getName()).isEqualTo("HTTP"),
+                () -> Assertions.assertThat(protocol.getVersion()).isEqualTo("1.1")
         );
     }
 }

@@ -11,18 +11,18 @@ public class RequestLine {
 
     private final HttpMethod httpMethod;
     private final Path path;
-    private final ProtocolVersion protocolVersion;
+    private final Protocol protocol;
     private final RequestParam requestParam;
 
     private RequestLine(
             final HttpMethod httpMethod,
             final Path path,
-            final ProtocolVersion protocolVersion,
+            final Protocol protocol,
             final RequestParam requestParam
     ) {
         this.httpMethod = httpMethod;
         this.path = path;
-        this.protocolVersion = protocolVersion;
+        this.protocol = protocol;
         this.requestParam = requestParam;
     }
 
@@ -30,10 +30,10 @@ public class RequestLine {
         String[] splitStartLine = startLine.split(EMPTY_STRING);
         HttpMethod httpMethod = HttpMethod.from(splitStartLine[HTTP_METHOD_INDEX]);
         Path path = Path.from(splitStartLine[REQUEST_URL_INDEX]);
-        ProtocolVersion protocolVersion = ProtocolVersion.from(splitStartLine[PROTOCOL_VERSION_INDEX]);
+        Protocol protocol = Protocol.from(splitStartLine[PROTOCOL_VERSION_INDEX]);
         RequestParam requestParam = RequestParam.from(splitStartLine[REQUEST_URL_INDEX]);
 
-        return new RequestLine(httpMethod, path, protocolVersion, requestParam);
+        return new RequestLine(httpMethod, path, protocol, requestParam);
     }
 
     public HttpMethod getHttpMethod() {
@@ -44,8 +44,8 @@ public class RequestLine {
         return this.path;
     }
 
-    public ProtocolVersion getProtocolVersion() {
-        return this.protocolVersion;
+    public Protocol getProtocolVersion() {
+        return this.protocol;
     }
 
     public RequestParam getRequestParamMap() {
