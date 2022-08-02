@@ -4,10 +4,13 @@ import java.util.Arrays;
 
 public enum HttpMethod {
     GET("GET"),
+    HEAD("HEAD"),
     POST("POST"),
     PUT("PUT"),
     PATCH("PATCH"),
-    DELETE("DELETE");
+    DELETE("DELETE"),
+    OPTIONS("OPTIONS"),
+    TRACE("TRACE");
 
     private final String method;
 
