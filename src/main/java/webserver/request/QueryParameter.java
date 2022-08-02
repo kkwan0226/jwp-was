@@ -26,13 +26,13 @@ public class QueryParameter {
 
     private static Map<String, String> parseQueryString(final String requestUrl) {
         if (!requestUrl.contains(QUERY_STRING_START_CHARACTER)) {
-            String queryParameter = requestUrl.split(REQUEST_URL_PATH_DELIMITER)[QUERY_STRING_INDEX];
-            String[] splitQueryParameter = queryParameter.split(REQUEST_URL_PARAMETER_DELIMITER);
-
-            return getRequestParamMap(splitQueryParameter);
+            return new HashMap<>();
         }
 
-        return new HashMap<>();
+        String queryParameter = requestUrl.split(REQUEST_URL_PATH_DELIMITER)[QUERY_STRING_INDEX];
+        String[] splitQueryParameter = queryParameter.split(REQUEST_URL_PARAMETER_DELIMITER);
+
+        return getRequestParamMap(splitQueryParameter);
     }
 
     private static Map<String, String> getRequestParamMap(String[] splitQueryParameter) {
