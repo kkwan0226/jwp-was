@@ -3,7 +3,7 @@ package webserver;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RequestParamMap {
+public class RequestParam {
 
     private static final int QUERY_STRING_INDEX = 1;
     private static final int PARAMETER_KEY_INDEX = 0;
@@ -16,12 +16,12 @@ public class RequestParamMap {
 
     private final Map<String, String> requestParamMap;
 
-    private RequestParamMap(final Map<String, String> requestParamMap) {
+    private RequestParam(final Map<String, String> requestParamMap) {
         this.requestParamMap = requestParamMap;
     }
 
-    public static RequestParamMap from(final String requestUrl) {
-        return new RequestParamMap(parseQueryString(requestUrl));
+    public static RequestParam from(final String requestUrl) {
+        return new RequestParam(parseQueryString(requestUrl));
     }
 
     private static Map<String, String> parseQueryString(final String requestUrl) {

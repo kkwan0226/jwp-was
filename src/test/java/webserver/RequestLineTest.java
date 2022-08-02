@@ -47,12 +47,12 @@ public class RequestLineTest {
         String startLine = "GET /users?userId=kkwan0226&password=password&name=kkwan HTTP/1.1";
 
         RequestLine requestLine = RequestLine.from(startLine);
-        RequestParamMap requestParamMap = requestLine.getRequestParamMap();
+        RequestParam requestParam = requestLine.getRequestParamMap();
 
         assertAll(
-                () -> assertThat(requestParamMap.get("userId")).isEqualTo("kkwan0226"),
-                () -> assertThat(requestParamMap.get("password")).isEqualTo("password"),
-                () -> assertThat(requestParamMap.get("name")).isEqualTo("kkwan")
+                () -> assertThat(requestParam.get("userId")).isEqualTo("kkwan0226"),
+                () -> assertThat(requestParam.get("password")).isEqualTo("password"),
+                () -> assertThat(requestParam.get("name")).isEqualTo("kkwan")
         );
     }
 }
