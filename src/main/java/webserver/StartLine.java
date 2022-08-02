@@ -2,7 +2,7 @@ package webserver;
 
 import webserver.code.HttpMethod;
 
-public class RequestLine {
+public class StartLine {
 
     private static final String EMPTY_STRING = " ";
     private static final int HTTP_METHOD_INDEX = 0;
@@ -14,7 +14,7 @@ public class RequestLine {
     private final Protocol protocol;
     private final RequestParam requestParam;
 
-    private RequestLine(
+    private StartLine(
             final HttpMethod httpMethod,
             final Path path,
             final Protocol protocol,
@@ -26,14 +26,14 @@ public class RequestLine {
         this.requestParam = requestParam;
     }
 
-    public static RequestLine from(final String startLine) {
+    public static StartLine from(final String startLine) {
         String[] splitStartLine = startLine.split(EMPTY_STRING);
         HttpMethod httpMethod = HttpMethod.from(splitStartLine[HTTP_METHOD_INDEX]);
         Path path = Path.from(splitStartLine[REQUEST_URL_INDEX]);
         Protocol protocol = Protocol.from(splitStartLine[PROTOCOL_VERSION_INDEX]);
         RequestParam requestParam = RequestParam.from(splitStartLine[REQUEST_URL_INDEX]);
 
-        return new RequestLine(httpMethod, path, protocol, requestParam);
+        return new StartLine(httpMethod, path, protocol, requestParam);
     }
 
     public HttpMethod getHttpMethod() {

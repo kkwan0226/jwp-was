@@ -6,16 +6,16 @@ import webserver.code.HttpMethod;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class RequestLineTest {
+public class StartLineTest {
 
     @Test
     void GET_요청에_대한_RequestLine_파싱_테스트() {
-        String startLine = "GET /users HTTP/1.1";
+        String request = "GET /users HTTP/1.1";
 
-        RequestLine requestLine = RequestLine.from(startLine);
-        HttpMethod httpMethod = requestLine.getHttpMethod();
-        Path path = requestLine.getPath();
-        Protocol protocol = requestLine.getProtocolVersion();
+        StartLine startLine = StartLine.from(request);
+        HttpMethod httpMethod = startLine.getHttpMethod();
+        Path path = startLine.getPath();
+        Protocol protocol = startLine.getProtocolVersion();
 
         assertAll(
                 () -> assertThat(httpMethod.getMethod()).isEqualTo("GET"),
@@ -29,7 +29,7 @@ public class RequestLineTest {
     void POST_요청에_대한_RequestLine_파싱_테스트() {
         String startLine = "POST /users HTTP/1.1";
 
-        RequestLine requestLine = RequestLine.from(startLine);
+        StartLine requestLine = StartLine.from(startLine);
         HttpMethod httpMethod = requestLine.getHttpMethod();
         Path path = requestLine.getPath();
         Protocol protocol = requestLine.getProtocolVersion();
@@ -44,10 +44,10 @@ public class RequestLineTest {
 
     @Test
     void 요청의_Query_String으로_전달되는_데이터_파싱_테스트() {
-        String startLine = "GET /users?userId=kkwan0226&password=password&name=kkwan HTTP/1.1";
+        String request = "GET /users?userId=kkwan0226&password=password&name=kkwan HTTP/1.1";
 
-        RequestLine requestLine = RequestLine.from(startLine);
-        RequestParam requestParam = requestLine.getRequestParamMap();
+        StartLine startLine = StartLine.from(request);
+        RequestParam requestParam = startLine.getRequestParamMap();
 
         assertAll(
                 () -> assertThat(requestParam.get("userId")).isEqualTo("kkwan0226"),
