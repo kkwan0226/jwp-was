@@ -1,7 +1,6 @@
 package webserver.request;
 
 import org.junit.jupiter.api.Test;
-import webserver.Path;
 import webserver.Protocol;
 import webserver.RequestParam;
 import webserver.code.HttpMethod;
