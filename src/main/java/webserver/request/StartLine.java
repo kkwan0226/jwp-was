@@ -12,13 +12,13 @@ public class StartLine {
     private final HttpMethod httpMethod;
     private final Path path;
     private final Protocol protocol;
-    private final RequestParam requestParam;
+    private final QueryParameter requestParam;
 
     private StartLine(
             final HttpMethod httpMethod,
             final Path path,
             final Protocol protocol,
-            final RequestParam requestParam
+            final QueryParameter requestParam
     ) {
         this.httpMethod = httpMethod;
         this.path = path;
@@ -31,7 +31,7 @@ public class StartLine {
         HttpMethod httpMethod = HttpMethod.from(splitStartLine[HTTP_METHOD_INDEX]);
         Path path = Path.from(splitStartLine[REQUEST_URL_INDEX]);
         Protocol protocol = Protocol.from(splitStartLine[PROTOCOL_VERSION_INDEX]);
-        RequestParam requestParam = RequestParam.from(splitStartLine[REQUEST_URL_INDEX]);
+        QueryParameter requestParam = QueryParameter.from(splitStartLine[REQUEST_URL_INDEX]);
 
         return new StartLine(httpMethod, path, protocol, requestParam);
     }
@@ -48,7 +48,7 @@ public class StartLine {
         return this.protocol;
     }
 
-    public RequestParam getRequestParamMap() {
+    public QueryParameter getRequestParamMap() {
         return this.requestParam;
     }
 }

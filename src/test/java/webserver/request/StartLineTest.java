@@ -47,7 +47,7 @@ public class StartLineTest {
         String request = "GET /users?userId=kkwan0226&password=password&name=kkwan HTTP/1.1";
 
         StartLine startLine = StartLine.from(request);
-        RequestParam requestParam = startLine.getRequestParamMap();
+        QueryParameter requestParam = startLine.getRequestParamMap();
 
         assertAll(
                 () -> assertThat(requestParam.get("userId")).isEqualTo("kkwan0226"),
