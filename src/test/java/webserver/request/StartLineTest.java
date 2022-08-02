@@ -1,7 +1,6 @@
 package webserver.request;
 
 import org.junit.jupiter.api.Test;
-import webserver.RequestParam;
 import webserver.code.HttpMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
