@@ -27,7 +27,7 @@ public class IOUtilsTest {
     @Test
     public void 올바른_BufferedReader_테스트() throws Exception {
         BufferedReader bufferedReader = Mockito.mock(BufferedReader.class);
-        String[] expected = {"GET /index.html HTTP/1.1", "Host: localhost:8080", "Connection: keep-alive", "Accept: */*", null};
+        List<String> expected = List.of("GET /index.html HTTP/1.1", "Host: localhost:8080", "Connection: keep-alive", "Accept: */*");
         when(bufferedReader.readLine())
                 .thenReturn("GET /index.html HTTP/1.1")
                 .thenReturn("Host: localhost:8080")
@@ -37,6 +37,6 @@ public class IOUtilsTest {
 
         List<String> multiLine = IOUtils.readMultiLine(bufferedReader);
 
-        assertThat(multiLine).containsExactly(expected);
+        assertThat(multiLine).isEqualTo(expected);
     }
 }
