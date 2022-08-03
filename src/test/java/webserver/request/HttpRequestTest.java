@@ -37,4 +37,27 @@ public class HttpRequestTest {
                 () -> assertThat(httpRequest.getStartLine().getQueryParameter().get("email")).isEqualTo("kkwan%40airi.kr")
         );
     }
+
+    @Test
+    void BODY가_존재하는_HTTP_REQUEST로부터_사용자_정보_파싱_테스트() {
+        List<String> request = List.of(
+                "POST /user/create HTTP/1.1",
+                "Host: localhost:8080",
+                "Connection: keep-alive",
+                "Content-Length: 59",
+                "Content-Type: application/x-www-form-urlencoded",
+                "Accept: */*"
+        );
+        HttpRequest httpRequest = HttpRequest.from(request);
+        Body body = Body.from("userId=kkwan0226&password=password&name=kkwan&email=kkwan%40airi.kr");
+
+        HttpRequest httpRequestWithBody = HttpRequest.of(httpRequest, body);
+
+        assertAll(
+                () -> assertThat(httpRequestWithBody.getBody().get("userId")).isEqualTo("kkwan0226"),
+                () -> assertThat(httpRequestWithBody.getBody().get("password")).isEqualTo("password"),
+                () -> assertThat(httpRequestWithBody.getBody().get("name")).isEqualTo("kkwan"),
+                () -> assertThat(httpRequestWithBody.getBody().get("email")).isEqualTo("kkwan%40airi.kr")
+        );
+    }
 }
