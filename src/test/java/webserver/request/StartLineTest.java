@@ -47,12 +47,12 @@ public class StartLineTest {
         String request = "GET /users?userId=kkwan0226&password=password&name=kkwan HTTP/1.1";
 
         StartLine startLine = StartLine.from(request);
-        QueryParameter requestParam = startLine.getRequestParamMap();
+        QueryParameter queryParameter = startLine.getQueryParameter();
 
         assertAll(
-                () -> assertThat(requestParam.get("userId")).isEqualTo("kkwan0226"),
-                () -> assertThat(requestParam.get("password")).isEqualTo("password"),
-                () -> assertThat(requestParam.get("name")).isEqualTo("kkwan")
+                () -> assertThat(queryParameter.get("userId")).isEqualTo("kkwan0226"),
+                () -> assertThat(queryParameter.get("password")).isEqualTo("password"),
+                () -> assertThat(queryParameter.get("name")).isEqualTo("kkwan")
         );
     }
 }

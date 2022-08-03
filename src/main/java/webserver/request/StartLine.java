@@ -12,18 +12,18 @@ public class StartLine {
     private final HttpMethod httpMethod;
     private final Path path;
     private final Protocol protocol;
-    private final QueryParameter requestParam;
+    private final QueryParameter queryParameter;
 
     private StartLine(
             final HttpMethod httpMethod,
             final Path path,
             final Protocol protocol,
-            final QueryParameter requestParam
+            final QueryParameter queryParameter
     ) {
         this.httpMethod = httpMethod;
         this.path = path;
         this.protocol = protocol;
-        this.requestParam = requestParam;
+        this.queryParameter = queryParameter;
     }
 
     public static StartLine from(final String startLine) {
@@ -48,7 +48,7 @@ public class StartLine {
         return this.protocol;
     }
 
-    public QueryParameter getRequestParamMap() {
-        return this.requestParam;
+    public QueryParameter getQueryParameter() {
+        return this.queryParameter;
     }
 }
