@@ -1,6 +1,7 @@
 package webserver.request;
 
 import webserver.code.HttpMethod;
+import webserver.common.Protocol;
 
 public class StartLine {
 

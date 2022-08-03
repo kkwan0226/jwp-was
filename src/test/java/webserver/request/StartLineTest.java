@@ -2,6 +2,7 @@ package webserver.request;
 
 import org.junit.jupiter.api.Test;
 import webserver.code.HttpMethod;
+import webserver.common.Protocol;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;

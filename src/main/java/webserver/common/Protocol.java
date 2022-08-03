@@ -1,4 +1,4 @@
-package webserver.request;
+package webserver.common;
 
 public class Protocol {
 
