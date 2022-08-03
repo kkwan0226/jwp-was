@@ -1,5 +1,7 @@
 package webserver.request;
 
+import java.util.Objects;
+
 public class Path {
 
     private static final int PATH_INDEX = 0;
@@ -22,5 +24,18 @@ public class Path {
 
     public String getPath() {
         return this.path;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Path)) return false;
+        Path path = (Path) o;
+        return Objects.equals(getPath(), path.getPath());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPath());
     }
 }

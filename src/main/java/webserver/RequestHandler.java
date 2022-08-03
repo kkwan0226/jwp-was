@@ -1,5 +1,6 @@
 package webserver;
 
+import controller.UserController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.FileIoUtils;
@@ -15,9 +16,11 @@ public class RequestHandler implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
 
     private final Socket connection;
+    private final UserController userController;
 
     public RequestHandler(Socket connectionSocket) {
         this.connection = connectionSocket;
+        this.userController = new UserController();
     }
 
     public void run() {
@@ -27,6 +30,8 @@ public class RequestHandler implements Runnable {
         try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
             HttpRequest httpRequest = HttpRequest.from(IOUtils.readMultiLine(new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))));
             DataOutputStream dos = new DataOutputStream(out);
+
+            userController.route(httpRequest);
             byte[] body = FileIoUtils.loadFileFromClasspath(httpRequest.getFilePath());
 
             response200Header(dos, body.length);
