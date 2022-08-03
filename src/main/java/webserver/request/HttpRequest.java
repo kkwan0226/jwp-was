@@ -1,5 +1,7 @@
 package webserver.request;
 
+import webserver.common.Header;
+
 import java.util.List;
 
 public class HttpRequest {
