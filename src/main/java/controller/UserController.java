@@ -17,15 +17,15 @@ public class UserController {
 
     private void createUser(HttpRequest httpRequest) {
         User user = new User(
-                extractQueryParameterValue(httpRequest, "userId"),
-                extractQueryParameterValue(httpRequest, "password"),
-                extractQueryParameterValue(httpRequest, "name"),
-                extractQueryParameterValue(httpRequest, "email")
+                extractBodyValue(httpRequest, "userId"),
+                extractBodyValue(httpRequest, "password"),
+                extractBodyValue(httpRequest, "name"),
+                extractBodyValue(httpRequest, "email")
         );
         DataBase.addUser(user);
     }
 
-    private String extractQueryParameterValue(HttpRequest httpRequest, String key) {
-        return httpRequest.getStartLine().getQueryParameter().get(key);
+    private String extractBodyValue(HttpRequest httpRequest, String key) {
+        return httpRequest.getBody().get(key);
     }
 }
