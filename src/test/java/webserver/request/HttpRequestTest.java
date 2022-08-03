@@ -20,14 +20,14 @@ public class HttpRequestTest {
     }
 
     @Test
-    void HTTP_REQUEST_파일_경로_테스트() {
+    void BODY가_존재하지_않는_HTTP_REQUEST_파일_경로_테스트() {
         HttpRequest httpRequest = HttpRequest.from(List.of("GET /index.html HTTP/1.1", "Host: localhost:8080", "Connection: keep-alive", "Accept: */*"));
 
         assertThat(httpRequest.getFilePath()).isEqualTo("./templates/index.html");
     }
 
     @Test
-    void HTTP_REQUEST로부터_사용자_정보_파싱_테스트() {
+    void BODY가_존재하지_않는_HTTP_REQUEST로부터_사용자_정보_파싱_테스트() {
         HttpRequest httpRequest = HttpRequest.from(List.of("GET /users?userId=kkwan0226&password=password&name=kkwan&email=kkwan%40airi.kr HTTP/1.1", "Host: localhost:8080", "Connection: keep-alive", "Accept: */*"));
 
         assertAll(
