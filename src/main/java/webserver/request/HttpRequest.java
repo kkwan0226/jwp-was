@@ -26,4 +26,8 @@ public class HttpRequest {
     public String getFilePath() {
         return TEMPLATES_PATH + this.startLine.getPath().getPath();
     }
+
+    public StartLine getStartLine() {
+        return this.startLine;
+    }
 }
