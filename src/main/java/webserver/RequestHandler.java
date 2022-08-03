@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.FileIoUtils;
 import utils.IOUtils;
+import webserver.request.Body;
 import webserver.request.HttpRequest;
 
 import java.io.*;
@@ -28,11 +29,13 @@ public class RequestHandler implements Runnable {
                 connection.getPort());
 
         try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
-            HttpRequest httpRequest = HttpRequest.from(IOUtils.readMultiLine(new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+            HttpRequest httpRequest = httpRequest(bufferedReader);
+
             DataOutputStream dos = new DataOutputStream(out);
 
             userController.route(httpRequest);
-            byte[] body = FileIoUtils.loadFileFromClasspath(httpRequest.getFilePath());
+            byte[] body = getBody(httpRequest);
 
             response200Header(dos, body.length);
             responseBody(dos, body);
@@ -41,6 +44,24 @@ public class RequestHandler implements Runnable {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private byte[] getBody(HttpRequest httpRequest) throws IOException, URISyntaxException {
+        try {
+            return FileIoUtils.loadFileFromClasspath(httpRequest.getFilePath());
+        } catch (NullPointerException e) {
+            return new byte[0];
+        }
+    }
+
+    private HttpRequest httpRequest(BufferedReader bufferedReader) throws IOException {
+        HttpRequest httpRequest = HttpRequest.from(IOUtils.readMultiLine(bufferedReader));
+
+        if (httpRequest.getHeader().getContentLength() > 0) {
+            return httpRequest.withBody(Body.from(IOUtils.readData(bufferedReader, httpRequest.getHeader().getContentLength())));
+        }
+
+        return httpRequest;
     }
 
     private void response200Header(DataOutputStream dos, int lengthOfBodyContent) {

@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 public class Header {
 
     private static final String HEADER_DELIMITER = ": ";
+    private static final String CONTENT_LENGTH = "Content-Length";
 
     private static final int HEADER_KEY_INDEX = 0;
     private static final int HEADER_VALUE_INDEX = 1;
+    private static final int DEFAULT_CONTENT_LENGTH = 0;
 
     private final Map<String, String> headerMap;
 
@@ -30,5 +32,13 @@ public class Header {
 
     public String get(String key) {
         return this.headerMap.get(key);
+    }
+
+    public int getContentLength() {
+        if (headerMap.containsKey(CONTENT_LENGTH)) {
+            return Integer.parseInt(this.headerMap.get(CONTENT_LENGTH));
+        }
+
+        return DEFAULT_CONTENT_LENGTH;
     }
 }

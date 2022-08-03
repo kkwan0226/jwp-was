@@ -35,12 +35,20 @@ public class HttpRequest {
         return new HttpRequest(httpRequest.startLine, httpRequest.header, body);
     }
 
+    public HttpRequest withBody(Body body) {
+        return HttpRequest.of(this, body);
+    }
+
     public String getFilePath() {
         return TEMPLATES_PATH + this.startLine.getPath().getPath();
     }
 
     public StartLine getStartLine() {
         return this.startLine;
+    }
+
+    public Header getHeader() {
+        return this.header;
     }
 
     public Body getBody() {
