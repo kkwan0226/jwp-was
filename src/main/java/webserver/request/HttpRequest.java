@@ -10,10 +10,18 @@ public class HttpRequest {
 
     private final StartLine startLine;
     private final Header header;
+    private final Body body;
 
     private HttpRequest(final StartLine startLine, final Header header) {
         this.startLine = startLine;
         this.header = header;
+        this.body = null;
+    }
+
+    private HttpRequest(final StartLine startLine, final Header header, final Body body) {
+        this.startLine = startLine;
+        this.header = header;
+        this.body = body;
     }
 
     public static HttpRequest from(List<String> multiLine) {
@@ -23,11 +31,19 @@ public class HttpRequest {
         return new HttpRequest(startLine, header);
     }
 
+    public static HttpRequest of(HttpRequest httpRequest, Body body) {
+        return new HttpRequest(httpRequest.startLine, httpRequest.header, body);
+    }
+
     public String getFilePath() {
         return TEMPLATES_PATH + this.startLine.getPath().getPath();
     }
 
     public StartLine getStartLine() {
         return this.startLine;
+    }
+
+    public Body getBody() {
+        return this.body;
     }
 }
